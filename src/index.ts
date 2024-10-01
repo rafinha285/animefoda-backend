@@ -2,16 +2,16 @@ import e from 'express'
 import * as path from 'path'
 import {json, urlencoded} from "body-parser"
 import cookie_parser from "cookie-parser"
-import userPostRouter from './routes/user/userPostRouter'
-import userGetRouter from './routes/user/userGetRouter'
+import userPostRouter from './routes/client/user/userPostRouter'
+import userGetRouter from './routes/client/user/userGetRouter'
 import { BUILD_HTML, BUILD_PATH } from './config/pathConfig'
-import pgClient from './database/pg'
+import pgClient from './database/postgres'
 import * as pg from "pg"
-import animeGetRouter from './routes/anime/animeGetRouter'
-import animeListRouter from './routes/animelist/animelistRouter'
-import episodesGetRouter from './routes/episodes/episodeRouter'
-import episodeListPostRouter from "./routes/episodes/episodeListPostRouter";
-import episodeListGetRouter from "./routes/episodes/episodeListGetRouter";
+import animeGetRouter from './routes/client/anime/animeGetRouter'
+import animeListRouter from './routes/client/animelist/animelistRouter'
+import episodesGetRouter from './routes/client/episodes/episodeRouter'
+import episodeListPostRouter from "./routes/client/episodes/episodeListPostRouter";
+import episodeListGetRouter from "./routes/client/episodes/episodeListGetRouter";
 import sendFile from "./functions/general/File";
 import Console from "./functions/general/Console";
 
