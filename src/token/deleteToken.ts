@@ -2,7 +2,7 @@ import * as e from "express";
 import { JwtUser } from "../types/Global";
 import * as jwt from 'jsonwebtoken'
 import { SECRET_KEY } from "../config/config.json";
-import { pgClient } from "../database/pg";
+import pgClient from "../database/pg";
 import { ErrorType } from "../functions/general/Error";
 export default async function deleteToken(req:e.Request) {
     try{
