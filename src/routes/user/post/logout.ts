@@ -1,7 +1,6 @@
-import userPostRouter from "../userPostRouter";
-import deleteToken from "../../../../token/deleteToken";
-import Console from "../../../../functions/general/Console";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import deleteToken from "../../../token/deleteToken";
+import Console from "../../../functions/general/Console";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
 
 async function logout (req:e.Request,res:e.Response){

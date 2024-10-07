@@ -1,7 +1,6 @@
-import userPostRouter from "../userPostRouter";
-import Console from "../../../../functions/general/Console";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {RECAPTCHA_KEY} from "../../../../config/config.json"
+import Console from "../../../functions/general/Console";
+import {ErrorType, sendError} from "../../../functions/general/Error";
+import {RECAPTCHA_KEY} from "../../../config/config.json"
 import {v4 as uuidv4} from "uuid"
 import e from "express";
 

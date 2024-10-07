@@ -1,5 +1,4 @@
-import animeGetRouter from "../animeGetRouter";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
 
 async function getAgenda (req:e.Request,res:e.Response){

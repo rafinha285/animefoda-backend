@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {checkToken} from "../../../token/checkToken";
+import {checkToken} from "../../token/checkToken";
 import updateAnimelist from "./patch/update";
 
 const animelistPatchRouter = Router();

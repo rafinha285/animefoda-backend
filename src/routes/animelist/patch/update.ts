@@ -1,8 +1,6 @@
-import {ErrorType, sendError} from "../../../../functions/general/Error";
-import Console from "../../../../functions/general/Console";
-import {JwtUser} from "../../../../types/Global";
-import {checkToken} from "../../../../token/checkToken";
-import animelistGetRouter from "../animelistGetRouter";
+import {ErrorType, sendError} from "../../../functions/general/Error";
+import Console from "../../../functions/general/Console";
+import {JwtUser} from "../../../types/Global";
 import e from "express";
 
 export default async function updateAnimelist (req:e.Request, res:e.Response) {

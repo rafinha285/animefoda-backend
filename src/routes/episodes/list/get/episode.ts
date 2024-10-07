@@ -1,7 +1,5 @@
-import episodeListGetRouter from "../../episodeListGetRouter";
-import {checkToken} from "../../../../../token/checkToken";
-import {ErrorType, sendError} from "../../../../../functions/general/Error";
-import {JwtUser} from "../../../../../types/Global";
+import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {JwtUser} from "../../../../types/Global";
 import e from "express";
 
 async function getEpisodeList(req:e.Request,res:e.Response){

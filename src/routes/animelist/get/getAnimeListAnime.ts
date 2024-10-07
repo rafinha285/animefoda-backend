@@ -1,5 +1,5 @@
-import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {JwtUser} from "../../../../types/Global";
+import {ErrorType, sendError} from "../../../functions/general/Error";
+import {JwtUser} from "../../../types/Global";
 import e from "express";
 
 export default async function getAnimeListAnime(req:e.Request,res:e.Response){

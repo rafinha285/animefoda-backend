@@ -1,8 +1,7 @@
-import episodesGetRouter from "../episodeRouter";
 import path from "path";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {setHeader} from "../../../../functions/general/Header";
-import {ANIME_PATH} from "../../../../config/pathConfig";
+import {ErrorType, sendError} from "../../../functions/general/Error";
+import {setHeader} from "../../../functions/general/Header";
+import {ANIME_PATH} from "../../../config/pathConfig";
 import e from "express";
 
 async function getCaptions (req:e.Request,res:e.Response){

@@ -1,7 +1,6 @@
-import episodesGetRouter from "../episodeRouter";
 import e from "express";
-import Console from "../../../../functions/general/Console";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import Console from "../../../functions/general/Console";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 
 async function getEpisodesFromSeason (req:e.Request, res: e.Response) {
     try{

@@ -1,7 +1,5 @@
-import animelistGetRouter from "../animelistGetRouter";
-import {checkToken} from "../../../../token/checkToken";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {JwtUser} from "../../../../types/Global";
+import {ErrorType, sendError} from "../../../functions/general/Error";
+import {JwtUser} from "../../../types/Global";
 import e from "express";
 
 export default async function updateRating (req:e.Request, res:e.Response){

@@ -1,5 +1,5 @@
-import {ErrorType, sendError} from "../../../../../functions/general/Error";
-import {JwtUser} from "../../../../../types/Global";
+import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {JwtUser} from "../../../../types/Global";
 import e from "express";
 
 async function insertEpisodeList (req:e.Request, res:e.Response){

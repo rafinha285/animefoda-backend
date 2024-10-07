@@ -1,5 +1,4 @@
-import episodesGetRouter from "../episodeRouter";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
 
 async function getEpisode (req:e.Request,res:e.Response){

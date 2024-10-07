@@ -1,7 +1,5 @@
-import userGetRouter from "../userGetRouter";
-import {checkToken} from "../../../../token/checkToken";
-import {JwtUser} from "../../../../types/Global";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {JwtUser} from "../../../types/Global";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
 
 async function getUser(req:e.Request,res:e.Response){

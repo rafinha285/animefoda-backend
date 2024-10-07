@@ -1,6 +1,5 @@
-import userPostRouter from "../userPostRouter";
 import e from "express";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 
 async function appLogin (req:e.Request,res:e.Response){
     try{

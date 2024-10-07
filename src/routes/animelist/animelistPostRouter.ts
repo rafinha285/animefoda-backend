@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {checkToken} from "../../../token/checkToken";
+import {checkToken} from "../../token/checkToken";
 import insertAnimelist from "./post/insert";
 import updateRating from "./post/rating";
 

@@ -1,7 +1,6 @@
-import animeGetRouter from "../animeGetRouter";
-import {setHeader} from "../../../../functions/general/Header";
-import Console from "../../../../functions/general/Console";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
+import {setHeader} from "../../../functions/general/Header";
+import Console from "../../../functions/general/Console";
+import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
 
 async function getReleases(req:e.Request,res:e.Response){

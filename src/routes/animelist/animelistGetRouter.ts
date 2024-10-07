@@ -1,5 +1,5 @@
 import * as express from "express";
-import {checkToken} from "../../../token/checkToken";
+import {checkToken} from "../../token/checkToken";
 import checkList from "./get/checkList";
 import getAnimelist from "./get/getAnimelist";
 import getAnimeListAnime from "./get/getAnimeListAnime";

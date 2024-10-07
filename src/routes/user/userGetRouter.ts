@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {checkToken} from "../../../token/checkToken";
+import {checkToken} from "../../token/checkToken";
 import getUser from "./get/user";
 import checkUser from "./get/verify";
 

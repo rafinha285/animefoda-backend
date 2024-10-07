@@ -1,8 +1,7 @@
-import userPostRouter from "../userPostRouter";
 import e from "express";
-import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {RECAPTCHA_KEY} from "../../../../config/config.json";
-import insertToken from "../../../../token/insertToken";
+import {ErrorType, sendError} from "../../../functions/general/Error";
+import {RECAPTCHA_KEY} from "../../../config/config.json";
+import insertToken from "../../../token/insertToken";
 
 async function login(req:e.Request,res:e.Response){
     try{
