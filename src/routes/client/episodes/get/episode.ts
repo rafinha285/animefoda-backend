@@ -4,6 +4,7 @@ import e from "express";
 
 async function getEpisode (req:e.Request,res:e.Response){
     try{
+        console.log(req.params)
         if(!req.params.animeId || !req.params.seasonId||!req.params.epId){
             throw ErrorType.undefined
         }

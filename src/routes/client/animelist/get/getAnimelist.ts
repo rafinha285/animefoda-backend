@@ -1,9 +1,10 @@
-import animelistRouter from "../animelistRouter";
+import animelistRouter from "../animelistGetRouter";
 import {checkToken} from "../../../../token/checkToken";
 import {JwtUser} from "../../../../types/Global";
 import {ErrorType, sendError} from "../../../../functions/general/Error";
+import e from "express";
 
-animelistRouter.get("/",checkToken,async (req,res)=>{
+export default async function getAnimelist (req:e.Request,res:e.Response){
     try{
         var response = await req.db.query(`
             SELECT user_id, anime_id, status, name, start_date, finish_date, rate, priority, id
@@ -14,4 +15,4 @@ animelistRouter.get("/",checkToken,async (req,res)=>{
     }catch(err){
         sendError(res,ErrorType.default,500,err)
     }
-});
+};

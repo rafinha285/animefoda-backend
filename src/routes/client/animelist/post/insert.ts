@@ -1,9 +1,10 @@
-import animelistRouter from "../animelistRouter";
+import animelistRouter from "../animelistGetRouter";
 import {checkToken} from "../../../../token/checkToken";
 import {JwtUser} from "../../../../types/Global";
 import {ErrorType, sendError} from "../../../../functions/general/Error";
+import e from "express";
 
-animelistRouter.post("/insert/:id",checkToken,async (req,res)=>{
+export default async function insertAnimelist (req:e.Request,res:e.Response){
     try{
         const user = req.user as JwtUser;
         const ani = (await req.db.query("SELECT * FROM anime.anime WHERE id = $1",[req.params.id])).rows[0];
@@ -18,4 +19,4 @@ animelistRouter.post("/insert/:id",checkToken,async (req,res)=>{
     }catch(err){
         sendError(res,ErrorType.default,500,err);
     }
-})
+}

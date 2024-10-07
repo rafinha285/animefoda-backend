@@ -1,9 +1,8 @@
-import animelistRouter from "../animelistRouter";
-import {checkToken} from "../../../../token/checkToken";
 import {ErrorType, sendError} from "../../../../functions/general/Error";
 import {JwtUser} from "../../../../types/Global";
+import e from "express";
 
-animelistRouter.get("/checklist/:id",checkToken,async (req,res)=>{
+export default async function checkList (req:e.Request,res:e.Response){
     try{
         const user = req.user as JwtUser;
         let result = await req.db.query(`SELECT COUNT(*)
@@ -16,4 +15,4 @@ animelistRouter.get("/checklist/:id",checkToken,async (req,res)=>{
     }catch(err){
         sendError(res,ErrorType.default,500,err)
     }
-})
+}

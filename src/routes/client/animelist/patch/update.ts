@@ -2,9 +2,10 @@ import {ErrorType, sendError} from "../../../../functions/general/Error";
 import Console from "../../../../functions/general/Console";
 import {JwtUser} from "../../../../types/Global";
 import {checkToken} from "../../../../token/checkToken";
-import animeListRouter from "../animelistRouter";
+import animelistGetRouter from "../animelistGetRouter";
+import e from "express";
 
-animeListRouter.patch("/update",checkToken,async(req,res)=>{
+export default async function updateAnimelist (req:e.Request, res:e.Response) {
     try{
         const {anime_id,finish_date,priority,start_date,status} = req.body;
         Console.log(anime_id,finish_date,priority,start_date,status)
@@ -22,4 +23,4 @@ animeListRouter.patch("/update",checkToken,async(req,res)=>{
     }catch(err){
         sendError(res,ErrorType.default,500,err)
     }
-})
+}
