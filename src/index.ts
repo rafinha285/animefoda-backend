@@ -1,32 +1,34 @@
 import e from 'express'
 import * as path from 'path'
+import cors from "cors"
 import {json, urlencoded} from "body-parser"
 import cookie_parser from "cookie-parser"
-import userPostRouter from './routes/client/user/userPostRouter'
-import userGetRouter from './routes/client/user/userGetRouter'
+import userPostRouter from './routes/user/userPostRouter'
+import userGetRouter from './routes/user/userGetRouter'
 import { BUILD_HTML, BUILD_PATH } from './config/pathConfig'
 import pgClient from './database/postgres'
 import * as pg from "pg"
-import animeGetRouter from './routes/client/anime/animeGetRouter'
-import animelistGetRouter from './routes/client/animelist/animelistGetRouter'
-import episodesGetRouter from './routes/client/episodes/episodeRouter'
-import episodeListPostRouter from "./routes/client/episodes/episodeListPostRouter";
-import episodeListGetRouter from "./routes/client/episodes/episodeListGetRouter";
+import animeGetRouter from './routes/anime/animeGetRouter'
+import animelistGetRouter from './routes/animelist/animelistGetRouter'
+import episodesGetRouter from './routes/episodes/episodeRouter'
+import episodeListPostRouter from "./routes/episodes/episodeListPostRouter";
+import episodeListGetRouter from "./routes/episodes/episodeListGetRouter";
 import sendFile from "./functions/general/File";
 import Console from "./functions/general/Console";
-import userAdminGetRouter from "./routes/admin/user/userAdminGetRouter";
-import userAdminPostRouter from "./routes/admin/user/userAdminPostRouter";
-import animeAdminGetRouter from "./routes/admin/anime/animeAdminGetRouter";
-import animeAdminPostRouter from "./routes/admin/anime/animeAdminPostRouter";
-import animelistPostRouter from "./routes/client/animelist/animelistPostRouter";
-import animelistPatchRouter from "./routes/client/animelist/animelistPatchRouter";
-import animelistDeleteRouter from "./routes/client/animelist/animelistDeleteRouter";
+// import userAdminGetRouter from "./routes/admin/user/userAdminGetRouter";
+// import userAdminPostRouter from "./routes/admin/user/userAdminPostRouter";
+// import animeAdminGetRouter from "./routes/admin/anime/animeAdminGetRouter";
+// import animeAdminPostRouter from "./routes/admin/anime/animeAdminPostRouter";
+import animelistPostRouter from "./routes/animelist/animelistPostRouter";
+import animelistPatchRouter from "./routes/animelist/animelistPatchRouter";
+import animelistDeleteRouter from "./routes/animelist/animelistDeleteRouter";
 
 const app = e()
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cookie_parser())
+app.use(cors())
 
 pg.defaults.poolSize = 5
 
@@ -35,11 +37,11 @@ app.use(async (req:e.Request,res:e.Response,next:e.NextFunction)=>{
     next()
 })
 
-app.use("/admin/user/g/",userAdminGetRouter)
-app.use("/admin/user/p/",userAdminPostRouter)
-
-app.use("/admin/ani/g/",animeAdminGetRouter)
-app.use("/admin/ani/p/",animeAdminPostRouter)
+// app.use("/admin/user/g/",userAdminGetRouter)
+// app.use("/admin/user/p/",userAdminPostRouter)
+//
+// app.use("/admin/ani/g/",animeAdminGetRouter)
+// app.use("/admin/ani/p/",animeAdminPostRouter)
 
 //rotas para usuario
 app.use('/user/p/',userPostRouter)
