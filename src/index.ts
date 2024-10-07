@@ -33,7 +33,7 @@ app.use(async (req:e.Request,res:e.Response,next:e.NextFunction)=>{
 app.use('/user/p/',userPostRouter)
 app.use('/user/g/',userGetRouter)
 //rotas para animelist
-app.use('/user/animelist',animeListRouter)
+app.use('/user/animelist/',animeListRouter)
 //rotas para anime
 app.use('/ani/g/',animeGetRouter)
 //rotas para o log de eps assistidos
