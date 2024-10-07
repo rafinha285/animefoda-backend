@@ -1,5 +1,3 @@
-import animelistRouter from "../animelistGetRouter";
-import {checkToken} from "../../../../token/checkToken";
 import {JwtUser} from "../../../../types/Global";
 import {ErrorType, sendError} from "../../../../functions/general/Error";
 import e from "express";

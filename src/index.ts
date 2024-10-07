@@ -37,11 +37,6 @@ app.use(async (req:e.Request,res:e.Response,next:e.NextFunction)=>{
     next()
 })
 
-// app.use("/admin/user/g/",userAdminGetRouter)
-// app.use("/admin/user/p/",userAdminPostRouter)
-//
-// app.use("/admin/ani/g/",animeAdminGetRouter)
-// app.use("/admin/ani/p/",animeAdminPostRouter)
 
 //rotas para usuario
 app.use('/user/p/',userPostRouter)
