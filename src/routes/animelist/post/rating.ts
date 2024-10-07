@@ -1,9 +1,10 @@
-import animeListRouter from "../animelistRouter";
+import animelistGetRouter from "../animelistGetRouter";
 import {checkToken} from "../../../../token/checkToken";
 import {ErrorType, sendError} from "../../../../functions/general/Error";
 import {JwtUser} from "../../../../types/Global";
+import e from "express";
 
-animeListRouter.post("/rating/:id",checkToken,async(req,res)=>{
+export default async function updateRating (req:e.Request, res:e.Response){
     try{
         const {id} = req.params;
         const {rating} = req.body;
@@ -17,4 +18,4 @@ animeListRouter.post("/rating/:id",checkToken,async(req,res)=>{
     }catch(err){
         sendError(res,ErrorType.default,500,err)
     }
-})
+}

@@ -10,6 +10,7 @@ import getReleases from "./get/releases";
 import getSearch from "./get/search";
 import getSeasons from "./get/seasons";
 import getStudio from "./get/studio";
+import getAllAnimes from "../../admin/anime/get/allAnimes";
 
 const animeGetRouter = Router();
 

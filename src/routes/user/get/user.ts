@@ -7,7 +7,28 @@ import e from "express";
 async function getUser(req:e.Request,res:e.Response){
     try{
         let result = await req.db.query(`
-        SELECT _id, name, surname, username, birthdate, email, totalanime, totalanimewatching, totalanimecompleted, totalanimedropped, totalanimeplantowatch, role, totalmanga, totalmangareading, totalmangacompleted, totalmangadropped, totalmangaplantoread, totalanimeliked, totalmangaliked,totalanimeonhold,totalmangaonhold
+        SELECT 
+            _id,
+            name,
+            surname,
+            username,
+            birthdate,
+            email,
+            totalanime,
+            totalanimewatching,
+            totalanimecompleted,
+            totalanimedropped,
+            totalanimeplantowatch,
+            array_to_json(role) as role,
+            totalmanga,
+            totalmangareading,
+            totalmangacompleted,
+            totalmangadropped,
+            totalmangaplantoread,
+            totalanimeliked,
+            totalmangaliked,
+            totalanimeonhold,
+            totalmangaonhold
         FROM users.users
         WHERE _id = $1;
     `,[(req.user as JwtUser)._id])

@@ -37,3 +37,8 @@ export enum userAnimeState{
     dropped="Desistido",
     plan_to_watch="Pretendo assistir"
 }
+export enum roleEnum{
+    'adm',
+    'client',
+    'creator'
+}
