@@ -4,7 +4,7 @@ import getEpisode from "./get/episode";
 import getEpisodesFromSeason from "./get/fromSeason";
 import getReleases from "./get/releases";
 
-export const episodesGetRouter = e.Router();
+const episodesGetRouter = e.Router();
 
 episodesGetRouter.get("/lan",getReleases);
 episodesGetRouter.get("/caption/:aniid/:seasonid/:epid/:lang",getCaptions);

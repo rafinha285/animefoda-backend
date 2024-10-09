@@ -2,7 +2,7 @@ import * as e from "express";
 import * as jwt from 'jsonwebtoken'
 import config from "../config/config.json";
 import { ErrorType, sendError } from "../functions/general/Error";
-import { JwtUser } from "../types/Global";
+import {JwtUser, UserToken} from "../types/Global";
 import deleteToken from "./deleteToken";
 export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunction){
     try{
@@ -33,7 +33,7 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
             // Captura erros do JWT, como tokens inválidos ou expirados
             return sendError(res,ErrorType.invalidToken);
         }
-        const user = jwtResult as JwtUser;
+        const user = jwtResult as UserToken;
         let result = await req.db.query(`
             SELECT expires_at
                 FROM users.users_sessions
@@ -42,7 +42,9 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
                 AND time_zone = $3 
                 AND web_gl_vendor = $4 
                 AND web_gl_renderer = $5 
-        `,[user._id,userAgent,timezone,webglvendor,webglrenderer])
+                AND enabled = true 
+                AND session_id = $6
+        `,[user._id,userAgent,timezone,webglvendor,webglrenderer,user.session_id])
         // console.log(result)
         // Console.log(parseInt(result.rows[0].count) === 0)
         if(result.rows.length === 0){

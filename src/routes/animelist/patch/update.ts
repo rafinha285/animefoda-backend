@@ -1,6 +1,6 @@
 import {ErrorType, sendError} from "../../../functions/general/Error";
 import Console from "../../../functions/general/Console";
-import {JwtUser} from "../../../types/Global";
+import {UserToken} from "../../../types/Global";
 import e from "express";
 
 export default async function updateAnimelist (req:e.Request, res:e.Response) {
@@ -15,7 +15,7 @@ export default async function updateAnimelist (req:e.Request, res:e.Response) {
                 finish_date=$5,
                 priority=$6
             WHERE anime_id = $1 AND user_id = $2;
-        `,[anime_id,(req.user as JwtUser)._id,status,start_date,finish_date === null && status === 'completed'?new Date():finish_date,priority])
+        `,[anime_id,(req.user as UserToken)._id,status,start_date,finish_date === null && status === 'completed'?new Date():finish_date,priority])
         Console.log(result)
         res.json({success:true,message:"Atualizado com sucesso"})
     }catch(err){

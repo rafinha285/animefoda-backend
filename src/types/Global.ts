@@ -18,9 +18,15 @@ export interface JwtUser {
     time_zone:string;
     web_gl_vendor:string;
     web_gl_renderer:string;
-    // ip:string;
-    // SecChUa:string
+    ip_address:string;
+    session_id:string;
+}
+export interface UserToken{
+    _id: string;
+    username: string;
+    expires_at:Date;
+    session_id:string;
 }
 interface TokenRequest extends e.Request{
-    user?:JwtUser | jwt.JwtPayload |string
+    user?:UserToken | jwt.JwtPayload |string
 }

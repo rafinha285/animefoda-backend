@@ -19,7 +19,8 @@ export enum state{
     ONGOING="Lançando",
     HIATUS="Hiáto",
     COMPLETED="Completo",
-    CANCELED= "Cancelado"
+    CANCELED= "Cancelado",
+    NOTARING= "Não Lançado"
 }
 export enum userAnimeState{
     watching="Assistindo",

@@ -1,5 +1,5 @@
 import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {JwtUser} from "../../../../types/Global";
+import {UserToken} from "../../../../types/Global";
 import e from "express";
 
 async function insertEpisodeList (req:e.Request, res:e.Response){
@@ -13,7 +13,7 @@ async function insertEpisodeList (req:e.Request, res:e.Response){
         await req.db.query(`
             SELECT users.check_and_insert_user_anime_list($1, $2);
         `, [
-            (req.user as JwtUser)._id,  // user_id
+            (req.user as UserToken)._id,  // user_id
             anime_id                    // anime_id
         ]);
         await req.db.query(`
@@ -45,7 +45,7 @@ async function insertEpisodeList (req:e.Request, res:e.Response){
             dropped_on,
             season_id,
             anime_id,
-            (req.user as JwtUser)._id,
+            (req.user as UserToken)._id,
         ])
         res.json({success:true})
     }catch(err){

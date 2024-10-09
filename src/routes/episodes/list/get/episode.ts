@@ -1,11 +1,11 @@
 import {ErrorType, sendError} from "../../../../functions/general/Error";
-import {JwtUser} from "../../../../types/Global";
+import {UserToken} from "../../../../types/Global";
 import e from "express";
 
 async function getEpisodeList(req:e.Request,res:e.Response){
     try{
         const {id,epId} = req.params;
-        const {_id} = (req.user as JwtUser);
+        const {_id} = (req.user as UserToken);
         const result = await req.db.query(`
             SELECT * FROM users.user_episode_list
             WHERE

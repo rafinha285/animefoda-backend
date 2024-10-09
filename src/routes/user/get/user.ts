@@ -1,4 +1,4 @@
-import {JwtUser} from "../../../types/Global";
+import {UserToken} from "../../../types/Global";
 import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
 
@@ -29,7 +29,7 @@ async function getUser(req:e.Request,res:e.Response){
             totalmangaonhold
         FROM users.users
         WHERE _id = $1;
-    `,[(req.user as JwtUser)._id])
+    `,[(req.user as UserToken)._id])
         if(result.rows.length < 1){
             throw ErrorType.invalidPassOrEmail
         }
