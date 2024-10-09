@@ -67,7 +67,7 @@ app.get("/public-key",(req:e.Request,res:e.Response)=>{
 //para q todos os requests
 app.get('*',(req:e.Request,res:e.Response)=>{
     sendFile().cssJs(res)
-    Console.log(BUILD_HTML)
+    // Console.log(BUILD_HTML)
     res.sendFile(BUILD_HTML)
 })
 

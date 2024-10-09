@@ -31,11 +31,12 @@ export default async function insertToken(req:e.Request,userR:{
         if(result.rows.length !== 0){
             let row = result.rows[0];
             let user:UserToken = {
-                _id:row._id,
-                username:row.username,
-                expires_at:row.expires_at,
+                _id:userR._id,
+                username:userR.username,
+                expires_at:expires_at,
                 session_id:row.session_id,
             }
+            // console.log(user)
             let jwtToken = jwt.sign(user,SECRET_KEY,{'expiresIn':"7 days"})
             return jwtToken
         }else{

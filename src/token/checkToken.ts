@@ -4,6 +4,7 @@ import config from "../config/config.json";
 import { ErrorType, sendError } from "../functions/general/Error";
 import {JwtUser, UserToken} from "../types/Global";
 import deleteToken from "./deleteToken";
+import Console from "../functions/general/Console";
 export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunction){
     try{
         //TODO fazer o site mandar o
@@ -17,6 +18,7 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
         const tokenHeader = req.headers.authorization?.split(" ")[1];
         const tokencookie = req.cookies.token
         const token = tokenHeader || tokencookie;
+        // console.log(token)
         // console.log(req.headers)
         // console.log(userAgent)
         // console.log(timezone, webglrenderer, webglvendor)
@@ -34,6 +36,7 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
             return sendError(res,ErrorType.invalidToken);
         }
         const user = jwtResult as UserToken;
+        // console.log("user: ", user);
         let result = await req.db.query(`
             SELECT expires_at
                 FROM users.users_sessions
@@ -45,20 +48,22 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
                 AND enabled = true 
                 AND session_id = $6
         `,[user._id,userAgent,timezone,webglvendor,webglrenderer,user.session_id])
-        // console.log(result)
+        // console.log([user._id,userAgent,timezone,webglvendor,webglrenderer,user.session_id])
+        // console.log(result.rows,result.rows.length)
         // Console.log(parseInt(result.rows[0].count) === 0)
         if(result.rows.length === 0){
             return sendError(res,ErrorType.unauthorized);
         }
         // console.log(new Date(result.rows[0].expires_at).getTime() > new Date().getTime())
         if(new Date(result.rows[0].expires_at).getTime() < new Date().getTime()){
-            await deleteToken(req)
+            // await deleteToken(req)
             return sendError(res,ErrorType.unauthorized);
         }
         req.user = user;
         next()
     }catch(err){
         next(err)
+        Console.log("cu",err)
         throw err
     }
 }

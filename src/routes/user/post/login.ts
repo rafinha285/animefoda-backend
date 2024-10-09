@@ -8,9 +8,9 @@ async function login(req:e.Request,res:e.Response){
         console.log(typeof ErrorType)
         // console.log(decryptData(req.body.encryptedData))
         const {email,password,recaptchaToken,userAgent,timeZone,WebGLVendor,WebGLRenderer} = req.body;
-        // if(!recaptchaToken){
-        //     throw ErrorType.invalidReCaptcha
-        // }
+        if(!recaptchaToken){
+            throw ErrorType.invalidReCaptcha
+        }
         const response = await fetch('https://www.google.com/recaptcha/api/siteverify',{
             method:"POST",
             headers:{
