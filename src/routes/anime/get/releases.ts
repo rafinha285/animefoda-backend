@@ -8,7 +8,7 @@ async function getReleases(req:e.Request,res:e.Response){
         setHeader(res)
         res.setHeader("Cache-Control","public, max-age:60")
         //WHERE date_added BETWEEN CURRENT_TIMESTAMP - INTERVAL '7 days' AND CURRENT_TIMESTAMP;
-        var query = `SELECT id, name, description, genre, averageeptime FROM anime.anime;`
+        var query = `SELECT id, name, description, genre, averageeptime FROM anime.anime WHERE visible = true;`
         res.send((await req.db.query(query)).rows)
     }catch(err){
         Console.error(err)
