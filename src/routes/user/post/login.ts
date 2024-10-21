@@ -19,7 +19,7 @@ async function login(req:e.Request,res:e.Response){
             body: `secret=${RECAPTCHA_KEY}&response=${recaptchaToken}`
         })
         const data = await response.json()
-        // if(data.success){
+        if(data.success){
         let result = await req.db.query(`
                 WITH hashed_password AS (
                     SELECT users.crypt($1, salt) AS hash
@@ -45,9 +45,9 @@ async function login(req:e.Request,res:e.Response){
         // const token = jwt.sign(tokenInfo,await importPrivateKey(),{expiresIn:"1d"})
         res.cookie('token',token,{httpOnly:true,secure:true})
         res.send({success:true,message:"Login Successful",token})
-        // }else{
-        //     throw ErrorType.invalidReCaptcha
-        // }
+        }else{
+            throw ErrorType.invalidReCaptcha
+        }
     }catch(err){
         switch(err){
             case ErrorType.invalidReCaptcha:
