@@ -1,5 +1,6 @@
 import {ErrorType, sendError} from "../../../functions/general/Error";
 import e from "express";
+import Console from "../../../functions/general/Console";
 
 async function getAnime (req:e.Request,res:e.Response){
     try{
@@ -8,7 +9,7 @@ async function getAnime (req:e.Request,res:e.Response){
         if(row.rows.length != 1){
             return sendError(res,ErrorType.NotId)
         }
-        res.send()
+        res.send(row.rows[0])
     }catch(err){
         sendError(res,ErrorType.NotId)
     }
