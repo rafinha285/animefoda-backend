@@ -3,8 +3,12 @@ import e from "express";
 
 async function getAnime (req:e.Request,res:e.Response){
     try{
-        res.send((await req.db.query(`SELECT id, averageeptime, date_added, description, genre, language, name, name2, quality, rating, weekday, state, releasedate
-	FROM anime.anime WHERE id = $1 AND visible = true;`,[req.params.id])).rows[0])
+        let row = (await req.db.query(`SELECT id, averageeptime, date_added, description, genre, language, name, name2, quality, rating, weekday, state, releasedate
+	FROM anime.anime WHERE id = $1 AND visible = true;`,[req.params.id]))
+        if(row.rows.length != 1){
+            return sendError(res,ErrorType.NotId)
+        }
+        res.send()
     }catch(err){
         sendError(res,ErrorType.NotId)
     }
