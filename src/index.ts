@@ -69,7 +69,7 @@ app.get("/public-key",(req:e.Request,res:e.Response)=>{
 //para q todos os requests
 app.get('*',(req:e.Request,res:e.Response)=>{
     try{
-        if(fs.existsSync(BUILD_HTML)){
+        if(!fs.existsSync(BUILD_HTML)){
             // Console.log(BUILD_HTML)
             return sendError(res,ErrorType.undefined)
         }
