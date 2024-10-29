@@ -24,7 +24,8 @@ async function getReleases (req:e.Request,res:e.Response){
                 JOIN 
                     anime.anime a ON s.anime_id = a.id 
                 WHERE 
-                    e.date_added >= NOW() - INTERVAL '7 days'
+                    e.date_added >= NOW() - INTERVAL '7 days' AND
+                    a.visible = true
                 ORDER BY 
                     e.date_added DESC
                 LIMIT $1;
