@@ -33,11 +33,12 @@ export interface EpisodeUser{
     season_id:string
     anime_id:string;
     user_id:string;
-    id:string;
+    id?:number;
     date:Date;
     duration:number;
     ep_index:number;
     name:string;
+    watched:boolean
 }
 export interface EpisodeSim{
     id:string
