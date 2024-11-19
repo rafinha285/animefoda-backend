@@ -5,7 +5,7 @@ import {json, urlencoded} from "body-parser"
 import cookie_parser from "cookie-parser"
 import userPostRouter from './routes/user/userPostRouter'
 import userGetRouter from './routes/user/userGetRouter'
-import { BUILD_HTML, BUILD_PATH } from './config/pathConfig'
+import {BUILD_HTML, BUILD_PATH} from './config/pathConfig'
 import pgClient from './database/postgres'
 import * as pg from "pg"
 import animeGetRouter from './routes/anime/animeGetRouter'
@@ -22,6 +22,8 @@ import Console from "./functions/general/Console";
 import animelistPostRouter from "./routes/animelist/animelistPostRouter";
 import animelistPatchRouter from "./routes/animelist/animelistPatchRouter";
 import animelistDeleteRouter from "./routes/animelist/animelistDeleteRouter";
+import * as fs from "node:fs";
+import {ErrorType, sendError} from "./functions/general/Error";
 
 const app = e()
 
@@ -66,9 +68,16 @@ app.get("/public-key",(req:e.Request,res:e.Response)=>{
 })
 //para q todos os requests
 app.get('*',(req:e.Request,res:e.Response)=>{
-    sendFile().cssJs(res)
-    // Console.log(BUILD_HTML)
-    res.sendFile(BUILD_HTML)
+    try{
+        if(!fs.existsSync(BUILD_HTML)){
+            // Console.log(BUILD_HTML)
+            return sendError(res,ErrorType.undefined)
+        }
+        sendFile().cssJs(res)
+        res.sendFile(BUILD_HTML)
+    }catch (e){
+        sendError(res,ErrorType.undefined)
+    }
 })
 
 app.listen(4433,'0.0.0.0',()=>{

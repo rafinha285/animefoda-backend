@@ -7,7 +7,7 @@ async function getGenres (req:e.Request,res:e.Response){
             SELECT 1 
             FROM unnest(genre) AS g 
             WHERE g LIKE $1
-        );`,[`%${req.params.gen}%`])).rows)
+        )AND visible = TRUE;`,[`%${req.params.gen}%`])).rows)
     }catch(err){
         sendError(res,ErrorType.default,500,err)
     }
