@@ -5,7 +5,7 @@ import seenEpisode from "./list/post/seenEpisode";
 
 const episodeListPostRouter= Router();
 
-episodeListPostRouter.post("/seen/:epId",checkToken, seenEpisode);
+episodeListPostRouter.post("/seen/:aniId/:seasonId/:epId",checkToken, seenEpisode);
 episodeListPostRouter.post("/",checkToken, insertEpisodeList);
 
 export default episodeListPostRouter;
