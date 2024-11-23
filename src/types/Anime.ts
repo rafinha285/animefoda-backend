@@ -54,7 +54,7 @@ export interface AnimeUser{
     // times_watched?:number;
     // rewatched_episodes?:number;
     priority:priorityValue;
-    last_ep:EpisodeUser[]
+    // last_ep:EpisodeUser[]
 }
 export interface AnimeSearch{
     id:string;

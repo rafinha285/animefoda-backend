@@ -8,7 +8,7 @@ export default async function seenEpisode(req:e.Request, res:e.Response) {
     try{
         const {aniId,seasonId,epId} = req.params;
         const duration = parseInt((await req.db.query("SELECT duration FROM anime.episodes WHERE id = $1",[epId])).rows[0].duration)
-        const watched = await req.db.query(`SELECT watched 
+        const watched = await req.db.query(`SELECT finished 
             FROM users.user_episode_list 
             WHERE 
                 anime_id = $1 AND 
@@ -27,7 +27,7 @@ export default async function seenEpisode(req:e.Request, res:e.Response) {
         }else{
             try{
                 await req.db.query("BEGIN");
-                await req.db.query("UPDATE users.user_episode_list SET watched = true, dropped_on = $3 WHERE episode_id = $1 AND user_id = $2",
+                await req.db.query("UPDATE users.user_episode_list SET finished = true, dropped_on = $3 WHERE episode_id = $1 AND user_id = $2",
                     [epId,(req.user as UserToken)._id,duration]
                 );
                 await req.db.query("COMMIT")
