@@ -24,7 +24,7 @@ async function insertEpisodeList (req:e.Request, res:e.Response){
                 season_id,
                 anime_id,
                 user_id,
-                watched
+                finished
             )
             VALUES
                 (
