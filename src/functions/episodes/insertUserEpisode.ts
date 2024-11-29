@@ -30,7 +30,7 @@ export default async function insertUserEpisode(ep:prop){
                 season_id, 
                 anime_id, 
                 user_id, 
-                watched,
+                finished,
                 dropped_on
             ) VALUES (
                         $1,

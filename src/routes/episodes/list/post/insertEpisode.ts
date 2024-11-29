@@ -24,7 +24,7 @@ async function insertEpisodeList (req:e.Request, res:e.Response){
                 season_id,
                 anime_id,
                 user_id,
-                watched
+                finished
             )
             VALUES
                 (
@@ -39,7 +39,7 @@ async function insertEpisodeList (req:e.Request, res:e.Response){
                 DO UPDATE
                 SET dropped_on = $2,
                     date = now(),
-                    watched = ($2 >= (SELECT ending::double precision FROM anime.episodes WHERE id = $1));
+                    finished = ($2 >= (SELECT ending::double precision FROM anime.episodes WHERE id = $1));
         `,[
             episode_id,
             dropped_on,
