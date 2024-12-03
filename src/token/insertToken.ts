@@ -3,14 +3,15 @@ import * as jwt from 'jsonwebtoken'
 import { SECRET_KEY } from "../config/config.json";
 import {JwtUser, UserToken} from "../types/Global";
 import {QueryResult} from "pg";
-export default async function insertToken(req:e.Request,userR:{
+export interface userRequest{
     _id:string,
     username:string,
     user_agent:string,
     time_zone:string,
     web_gl_vendor:string,
     web_gl_renderer:string,
-}):Promise<string>{
+}
+export default async function insertToken(req:e.Request,userR:userRequest):Promise<string>{
     try{
         const expires_at = new Date()
         expires_at.setDate(expires_at.getDate()+7)

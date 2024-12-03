@@ -24,6 +24,7 @@ import animelistPatchRouter from "./routes/animelist/animelistPatchRouter";
 import animelistDeleteRouter from "./routes/animelist/animelistDeleteRouter";
 import * as fs from "node:fs";
 import {ErrorType, sendError} from "./functions/general/Error";
+import googleApiRouter from './routes/google/googleApiRouter'
 
 const app = e()
 
@@ -56,6 +57,8 @@ app.use('/ep/user/p/',episodeListPostRouter)
 app.use('/ep/user/g/',episodeListGetRouter)
 //rotas para episodios
 app.use('/ep/g/',episodesGetRouter)
+//rota para o googleapi
+app.use("/api/auth/",googleApiRouter)
 
 
 app.use(e.static(BUILD_PATH,{ maxAge: '1d' }))
