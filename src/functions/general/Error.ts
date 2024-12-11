@@ -20,8 +20,8 @@ export function sendError(res:e.Response,errorType:ErrorType = ErrorType.default
         res.status(status).json(menssage)
     }
     function notId(res:e.Response){
-        Console.error("The ids are not a valid ObjectId or does not exist")
-        res.status(400).json("The ids are not a valid ObjectId or does not exist")
+        Console.error("The id is not a valid UUID or does not exist")
+        res.status(400).json("The id is not a valid UUID or does not exist")
     }
     function exist(res:e.Response){
         Console.error("The anime already exists")
