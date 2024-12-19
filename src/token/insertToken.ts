@@ -36,7 +36,7 @@ export default async function insertToken(req:e.Request,userR:{
                 session_id:row.session_id,
             }
             // console.log(user)
-            let jwtToken = jwt.sign(user,SECRET_KEY,{'expiresIn':"7 days"})
+            let jwtToken = jwt.sign(user,SECRET_KEY,{'expiresIn':"60 days"})
             return {token:jwtToken,session_id:user.session_id}
         }else{
             throw new Error("Erro ao iniciar sessão")
