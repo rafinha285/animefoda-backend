@@ -11,9 +11,10 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
         // para ver se é o usuario de mesmo token
         const { timezone, webglrenderer, webglvendor } = req.headers;
         const userAgent = req.headers['user-agent']
-        const tokenHeader = req.headers.authorization?.split(" ")[1];
+        // const tokenHeader = req.headers.authorization?.split(" ")[1];
         const tokencookie = req.cookies.token
-        const token = tokenHeader || tokencookie;
+        // const token = tokenHeader || tokencookie;
+        const token = tokencookie;
         // console.log(token)
         // console.log(req.headers)
         // console.log(userAgent)
