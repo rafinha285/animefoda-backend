@@ -10,7 +10,7 @@ export default async function insertToken(req:e.Request,userR:{
     time_zone:string,
     web_gl_vendor:string,
     web_gl_renderer:string,
-}):Promise<{token:string,session_id:string}>{
+}):Promise<{token:string,session_id:string,expires:Date}>{
     try{
         const expires_at = new Date()
         expires_at.setDate(expires_at.getDate()+60)
@@ -37,7 +37,7 @@ export default async function insertToken(req:e.Request,userR:{
             }
             // console.log(user)
             let jwtToken = jwt.sign(user,SECRET_KEY,{'expiresIn':"60 days"})
-            return {token:jwtToken,session_id:user.session_id}
+            return {token:jwtToken,session_id:user.session_id,expires:expires_at};
         }else{
             throw new Error("Erro ao iniciar sessão")
         }
