@@ -20,31 +20,31 @@ async function login(req:e.Request,res:e.Response){
         })
         const data = await response.json()
         if(data.success){
-        let result = await req.db.query(`
-                WITH hashed_password AS (
-                    SELECT users.crypt($1, salt) AS hash
-                    FROM users.users
-                    WHERE email = $2
-                )
-                SELECT * FROM users.users
-                WHERE email = $2 AND password = (SELECT hash FROM hashed_password)
-                `,[password,email])
-        // Console.log(result.rows)
-        if(result.rows.length < 1){
-            throw ErrorType.invalidPassOrEmail
-        }
-        let tokenInfo ={
-            _id:result.rows[0]._id,
-            username:result.rows[0].username,
-            user_agent:userAgent,
-            time_zone:timeZone,
-            web_gl_vendor:WebGLVendor,
-            web_gl_renderer:WebGLRenderer,
-        }
-        const token = await insertToken(req,tokenInfo)
-        // const token = jwt.sign(tokenInfo,await importPrivateKey(),{expiresIn:"1d"})
-        res.cookie('token',token,{httpOnly:true,secure:true})
-        res.send({success:true,message:"Login Successful",token})
+            let result = await req.db.query(`
+                    WITH hashed_password AS (
+                        SELECT users.crypt($1, salt) AS hash
+                        FROM users.users
+                        WHERE email = $2
+                    )
+                    SELECT * FROM users.users
+                    WHERE email = $2 AND password = (SELECT hash FROM hashed_password)
+                    `,[password,email])
+            // Console.log(result.rows)
+            if(result.rows.length < 1){
+                throw ErrorType.invalidPassOrEmail
+            }
+            let tokenInfo ={
+                _id:result.rows[0]._id,
+                username:result.rows[0].username,
+                user_agent:userAgent,
+                time_zone:timeZone,
+                web_gl_vendor:WebGLVendor,
+                web_gl_renderer:WebGLRenderer,
+            }
+            const token = await insertToken(req,tokenInfo)
+            // const token = jwt.sign(tokenInfo,await importPrivateKey(),{expiresIn:"1d"})
+            res.cookie('token',token,{httpOnly:true,secure:true})
+            res.send({success:true,message:"Login Successful",token})
         }else{
             throw ErrorType.invalidReCaptcha
         }

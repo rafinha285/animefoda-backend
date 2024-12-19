@@ -21,19 +21,19 @@ export function sendError(res:e.Response,errorType:ErrorType = ErrorType.default
     }
     function notId(res:e.Response){
         Console.error("The ids are not a valid ObjectId or does not exist")
-        res.status(400).json("The ids are not a valid ObjectId or does not exist")
+        res.status(400).json({success:false,message:"The ids are not a valid ObjectId or does not exist"})
     }
     function exist(res:e.Response){
         Console.error("The anime already exists")
-        res.status(409).json("The anime already exists")
+        res.status(409).json({success:false,message:"The anime already exists"})
     }
     function und(res:e.Response){
         Console.error("Is undefined")
-        res.status(400).json("Is undefined")
+        res.status(404).json({success:false,message:"Is undefined"})
     }
     function noToken(res:e.Response){
         Console.log("No token is provided")
-        res.status(401).json({success:false,mensagem:"No token is provided"})
+        res.status(401).json({success:false,message:"No token is provided"})
     }
     function invalidToken(res:e.Response){
         Console.log("Invalid Token")
