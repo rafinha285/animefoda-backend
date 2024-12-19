@@ -13,7 +13,7 @@ export default async function insertToken(req:e.Request,userR:{
 }):Promise<{token:string,session_id:string}>{
     try{
         const expires_at = new Date()
-        expires_at.setDate(expires_at.getDate()+7)
+        expires_at.setDate(expires_at.getDate()+60)
 
         let result:QueryResult<JwtUser> = await req.db.query(`INSERT INTO users.users_sessions (
                 user_id, expires_at, user_agent, time_zone, web_gl_vendor, web_gl_renderer
