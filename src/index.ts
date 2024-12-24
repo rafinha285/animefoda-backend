@@ -20,6 +20,7 @@ import animelistPatchRouter from "./routes/animelist/animelistPatchRouter";
 import animelistDeleteRouter from "./routes/animelist/animelistDeleteRouter";
 import * as fs from "node:fs";
 import {ErrorType, sendError} from "./functions/general/Error";
+import seasonGetRouter from "./routes/season/seasonGetRouter";
 
 const app = e()
 
@@ -46,6 +47,8 @@ app.use('/user/animelist/patch/',animelistPatchRouter)
 app.use('/user/animelist/delete/',animelistDeleteRouter)
 //rotas para anime
 app.use('/ani/g/',animeGetRouter)
+//rotas para seasons
+app.use('/season/g/',seasonGetRouter)
 //rotas para o log de eps assistidos
 app.use('/ep/user/p/',episodeListPostRouter)
 //rota para pegar os eps do usuario
