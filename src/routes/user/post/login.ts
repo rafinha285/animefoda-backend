@@ -43,7 +43,7 @@ async function login(req:e.Request,res:e.Response){
             }
             const token = await insertToken(req,tokenInfo)
             // const token = jwt.sign(tokenInfo,await importPrivateKey(),{expiresIn:"1d"})
-            res.cookie('token',token,{httpOnly:true,secure:true,expires:token.expires})
+            res.cookie('token',token.token,{httpOnly:true,secure:true,expires:token.expires})
             res.send({success:true,message:"Login Successful",token})
         }else{
             throw ErrorType.invalidReCaptcha
