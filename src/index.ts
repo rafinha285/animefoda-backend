@@ -70,11 +70,13 @@ app.get('*',(req:e.Request,res:e.Response)=>{
     try{
         if(!fs.existsSync(BUILD_HTML)){
             // Console.log(BUILD_HTML)
+            Console.error(BUILD_HTML)
             return sendError(res,ErrorType.undefined)
         }
         sendFile().cssJs(res)
         res.sendFile(BUILD_HTML)
-    }catch (e){
+    }catch (err){
+        Console.error(err)
         sendError(res,ErrorType.undefined)
     }
 })
