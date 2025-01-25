@@ -10,6 +10,7 @@ import getReleases from "./get/releases";
 import getSearch from "./get/search";
 import getSeasons from "./get/seasons";
 import getStudio from "./get/studio";
+import getCharacters from "./get/character";
 
 const animeGetRouter = Router();
 
@@ -23,5 +24,7 @@ animeGetRouter.get("/prod/:prod",getProducer);
 animeGetRouter.get("/crea/:cria",getCreators);
 animeGetRouter.get("/stud/:stud",getStudio);
 animeGetRouter.get("/agenda",getAgenda);
+animeGetRouter.get("/characters/:id",getCharacters);
 animeGetRouter.get("/:id",getAnime);
+
 export default animeGetRouter;
