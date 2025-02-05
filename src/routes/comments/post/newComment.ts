@@ -15,7 +15,7 @@ export default async function newComment(req:e.Request, res:e.Response) {
                 parent_id,
                 page_id,
                 user_id,
-                content,
+                content
             ) VALUES (
                       $1,
                       $2,

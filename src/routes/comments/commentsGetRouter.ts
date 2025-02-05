@@ -1,8 +1,8 @@
 import {Router} from "express";
-import commentsFromId from "./get/commentsFromId";
+import commentsFromPageId from "./get/commentsFromPageId";
 
 const commentsGetRouter = Router();
 
-commentsGetRouter.get("/page/:id",commentsFromId)
+commentsGetRouter.get("/page/:id",commentsFromPageId)
 
 export default commentsGetRouter;
