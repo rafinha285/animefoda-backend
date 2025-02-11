@@ -1,6 +1,5 @@
 import e from "express";
 import {ErrorType, sendError} from "../../../functions/general/Error";
-import {Comment} from "../../../types/Comment";
 import {UserToken} from "../../../types/Global";
 
 export default async function newComment(req:e.Request, res:e.Response) {
@@ -10,12 +9,15 @@ export default async function newComment(req:e.Request, res:e.Response) {
             parent_id?:number,
             content:string
         } = req.body;
+        if(!comment.content){
+            return sendError(res,ErrorType.badRequest)
+        }
         await req.db.query(`
             INSERT INTO users.comments(
                 parent_id,
                 page_id,
                 user_id,
-                content,
+                content
             ) VALUES (
                       $1,
                       $2,

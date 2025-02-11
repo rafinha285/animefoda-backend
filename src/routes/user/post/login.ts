@@ -12,15 +12,15 @@ async function login(req:e.Request,res:e.Response){
         if(!recaptchaToken){
             throw ErrorType.invalidReCaptcha
         }
-        // const response = await fetch('https://www.google.com/recaptcha/api/siteverify',{
-        //     method:"POST",
-        //     headers:{
-        //         'Content-Type':'application/x-www-form-urlencoded',
-        //     },
-        //     body: `secret=${RECAPTCHA_KEY}&response=${recaptchaToken}`
-        // })
-        // const data = await response.json()
-        // if(data.success){
+        const response = await fetch('https://www.google.com/recaptcha/api/siteverify',{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded',
+            },
+            body: `secret=${RECAPTCHA_KEY}&response=${recaptchaToken}`
+        })
+        const data = await response.json()
+        if(data.success){
             let result = await req.db.query(`
                     WITH hashed_password AS (
                         SELECT users.crypt($1, salt) AS hash
@@ -47,9 +47,9 @@ async function login(req:e.Request,res:e.Response){
             Console.log(token)
             res.cookie('token',token.token,{httpOnly:true,secure:true,expires:token.expires})
             res.send({success:true,message:"Login Successful",token})
-        // }else{
-        //     throw ErrorType.invalidReCaptcha
-        // }
+        }else{
+            throw ErrorType.invalidReCaptcha
+        }
     }catch(err){
         switch(err){
             case ErrorType.invalidReCaptcha:

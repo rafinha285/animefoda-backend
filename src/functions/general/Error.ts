@@ -25,7 +25,7 @@ export function sendError(res:e.Response,errorType:ErrorType = ErrorType.default
         res.status(404).json({success:false,message:"Not Found"})
     }
     function badRequest(res:e.Response){
-        res.status(400)
+        res.status(400).json({success:false,message:"Bad Request"})
     }
     function notId(res:e.Response){
         Console.error("The ids are not a valid ObjectId or does not exist")
