@@ -46,7 +46,7 @@ export async function checkToken(req:e.Request,res:e.Response,next:e.NextFunctio
                 AND session_id = $6
         `,[user._id,userAgent,timezone,webglvendor,webglrenderer,user.session_id])
         // console.log([user._id,userAgent,timezone,webglvendor,webglrenderer,user.session_id])
-        // console.log(result.rows,result.rows.length)
+        // console.log(result.rows)
         // Console.log(parseInt(result.rows[0].count) === 0)
         if(result.rows.length === 0){
             return sendError(res,ErrorType.unauthorized);

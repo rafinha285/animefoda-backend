@@ -2,6 +2,7 @@ import e from "express";
 import {ErrorType, sendError} from "../../../functions/general/Error";
 import {RECAPTCHA_KEY} from "../../../config/config.json";
 import insertToken from "../../../token/insertToken";
+import Console from "../../../functions/general/Console";
 
 async function login(req:e.Request,res:e.Response){
     try{
@@ -43,6 +44,7 @@ async function login(req:e.Request,res:e.Response){
             }
             const token = await insertToken(req,tokenInfo)
             // const token = jwt.sign(tokenInfo,await importPrivateKey(),{expiresIn:"1d"})
+            Console.log(token)
             res.cookie('token',token.token,{httpOnly:true,secure:true,expires:token.expires})
             res.send({success:true,message:"Login Successful",token})
         }else{

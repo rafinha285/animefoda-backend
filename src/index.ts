@@ -1,26 +1,31 @@
 import e from 'express'
 import * as path from 'path'
+import * as pg from "pg"
+import * as fs from "node:fs";
 import cors from "cors"
 import {json, urlencoded} from "body-parser"
 import cookie_parser from "cookie-parser"
+
+import InitWebSocket from './modules/appWebSocket'
+import {ErrorType, sendError} from "./functions/general/Error";
+import sendFile from "./functions/general/File";
+import Console from "./functions/general/Console";
+import pgClient from './database/postgres'
+import {BUILD_HTML, BUILD_PATH} from './config/pathConfig'
+//rotas
 import userPostRouter from './routes/user/userPostRouter'
 import userGetRouter from './routes/user/userGetRouter'
-import {BUILD_HTML, BUILD_PATH} from './config/pathConfig'
-import pgClient from './database/postgres'
-import * as pg from "pg"
 import animeGetRouter from './routes/anime/animeGetRouter'
 import animelistGetRouter from './routes/animelist/animelistGetRouter'
 import episodesGetRouter from './routes/episodes/episodeRouter'
 import episodeListPostRouter from "./routes/episodes/episodeListPostRouter";
 import episodeListGetRouter from "./routes/episodes/episodeListGetRouter";
-import sendFile from "./functions/general/File";
-import Console from "./functions/general/Console";
 import animelistPostRouter from "./routes/animelist/animelistPostRouter";
 import animelistPatchRouter from "./routes/animelist/animelistPatchRouter";
 import animelistDeleteRouter from "./routes/animelist/animelistDeleteRouter";
-import * as fs from "node:fs";
-import {ErrorType, sendError} from "./functions/general/Error";
 import seasonGetRouter from "./routes/season/seasonGetRouter";
+import commentsGetRouter from "./routes/comments/commentsGetRouter";
+import commentsPostRouter from "./routes/comments/commentsPostRouter";
 
 const app = e()
 
@@ -28,6 +33,8 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(cookie_parser())
 app.use(cors())
+
+InitWebSocket(app)
 
 pg.defaults.poolSize = 5
 
@@ -37,6 +44,9 @@ app.use(async (req:e.Request,res:e.Response,next:e.NextFunction)=>{
 })
 
 
+//rotas comments
+app.use("/comments/g/",commentsGetRouter)
+app.use("/comments/p/",commentsPostRouter)
 //rotas para usuario
 app.use('/user/p/',userPostRouter)
 app.use('/user/g/',userGetRouter)
@@ -68,8 +78,8 @@ app.get("/public-key",(req:e.Request,res:e.Response)=>{
 //para q todos os requests
 app.get('*',(req:e.Request,res:e.Response)=>{
     try{
+        // Console.log(BUILD_HTML)
         if(!fs.existsSync(BUILD_HTML)){
-            // Console.log(BUILD_HTML)
             Console.error(BUILD_HTML)
             return sendError(res,ErrorType.undefined)
         }
